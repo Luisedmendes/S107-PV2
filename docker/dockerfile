@@ -9,7 +9,7 @@ USER root
 
 # Executa comandos para instalar o Node.js
 RUN apt-get update && \
-    apt-get install -y wget && \
+    apt-get install -y wget xz-utils && \
     wget --no-verbose -O /tmp/node-v${NODE_VERSION}-linux-x64.tar.xz https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz && \
     tar -xJf /tmp/node-v${NODE_VERSION}-linux-x64.tar.xz -C /opt/ && \
     ln -s /opt/node-v${NODE_VERSION}-linux-x64 /opt/node && \
@@ -23,8 +23,6 @@ ENV NODE_HOME /opt/node
 # chown: comando linux que muda o dono de uma pasta. Nesse caso estamos dando permissão para o usuário jenkins
 RUN chown -R jenkins:jenkins /opt/node
 
-# Instalando mailutils
-RUN apt-get install -y mailutils
 
 # Limpa arquivos baixados com apt-get
 RUN apt-get clean
