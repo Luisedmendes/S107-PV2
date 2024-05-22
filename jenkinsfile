@@ -1,0 +1,38 @@
+pipeline {
+    agent {
+        dockerfile {
+            filename 'Dockerfile'
+            reuseNode true
+        }
+    }
+    stages {
+        stage('Test') {
+            steps {
+                sh 'npm test'
+            }
+            post {
+                always {
+                    junit '**/test-results.xml'
+                }
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'npm run build'
+            }
+            post {
+                success {
+                    archiveArtifacts artifacts: '**/dist/*.js', fingerprint: true
+                }
+            }
+        }
+        stage('Notify') {
+            steps {
+                sh 'node send-email.js'
+            }
+        }
+    }
+    environment {
+        EMAIL = credentials('email-credentials')
+    }
+}

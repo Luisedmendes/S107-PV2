@@ -1,0 +1,32 @@
+# Define nossa imagem base
+FROM jenkins/jenkins:lts-jdk11
+
+# Cria uma variável com a versão do Node.js
+ARG NODE_VERSION=20.11.1
+
+# Define nosso usuário dentro do container
+USER root
+
+# Executa comandos para instalar o Node.js
+RUN apt-get update && \
+    apt-get install -y wget && \
+    wget --no-verbose -O /tmp/node-v${NODE_VERSION}-linux-x64.tar.xz https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz && \
+    tar -xJf /tmp/node-v${NODE_VERSION}-linux-x64.tar.xz -C /opt/ && \
+    ln -s /opt/node-v${NODE_VERSION}-linux-x64 /opt/node && \
+    ln -s /opt/node/bin/node /usr/local/bin && \
+    ln -s /opt/node/bin/npm /usr/local/bin && \
+    rm -f /tmp/node-v${NODE_VERSION}-linux-x64.tar.xz
+
+# Define uma variável de ambiente NODE_HOME que aponta para o local do Node.js
+ENV NODE_HOME /opt/node
+
+# chown: comando linux que muda o dono de uma pasta. Nesse caso estamos dando permissão para o usuário jenkins
+RUN chown -R jenkins:jenkins /opt/node
+
+# Instalando mailutils
+RUN apt-get install -y mailutils
+
+# Limpa arquivos baixados com apt-get
+RUN apt-get clean
+
+USER jenkins
