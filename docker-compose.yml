@@ -1,6 +1,18 @@
 version: '3'
 
 services:
+  jenkins_node:
+    image: luised160/s107-jenkins-node
+    container_name: jenkins
+    privileged: true
+    user: root
+    ports:
+     - 8080:8080
+     - 50000:50000
+    volumes:
+      - ./jenkins_compose/jenkins_configuration:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      
   database:
     image: mysql
     restart: unless-stopped
@@ -28,3 +40,5 @@ services:
 networks:
   rs-network:
     driver: bridge
+
+ 
