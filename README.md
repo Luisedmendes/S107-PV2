@@ -18,7 +18,12 @@ O pipeline é configurado para usar o `nodemailer` para enviar o e-mail de notif
 
 ## Configuração
 
-Para configurar o pipeline para o seu próprio uso, você precisará fornecer o seguinte segredo através das configurações do seu repositório no GitHub:
+Configurando o Jenkins
+Primeiro de tudo, devemos configurar o Jenkins para utilizar nosso repositório para que toda vez que haja um commit, ele execute o pipeline.
+
+Insira as informações no Jenkinsfile, como email e password (senha do Google para envio de emails) de quem vai enviar os emails e recipient de quem vai receber.
+
+Para configurar o pipeline para o seu próprio uso, você precisará fornecer as seguintes variaveis no jenkinsfile:
 
 - `API_URL`: A URL da API que a aplicação irá consumir.
 - `EMAIL`: O endereço de e-mail usado para enviar notificações.

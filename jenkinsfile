@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     environment {
-        // Defina suas variáveis de ambiente aqui
         API_URL = 'http://localhost:3333'
         EMAIL = ''
         PASSWORD = ''
@@ -25,7 +24,6 @@ pipeline {
     stages {
         stage('Testes') {
             steps {
-                // Adicione os comandos para executar seus testes aqui
                 sh 'npm install'
                 sh 'docker-compose up -d'
                 sh 'yarn dev &'
@@ -36,7 +34,6 @@ pipeline {
 
         stage('Build') {
             steps {
-                // Adicione os comandos para fazer o build do seu projeto aqui
                 sh 'npm run build'
             }
 
@@ -50,7 +47,6 @@ pipeline {
 
         stage('Notificar usuários') {
             steps {
-                // Chame seu script para enviar um email aqui
                 sh 'node src/modules/users/services/sendEmail.ts'
             }
         }
