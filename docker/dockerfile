@@ -17,6 +17,9 @@ RUN apt-get update && \
     ln -s /opt/node/bin/npm /usr/local/bin && \
     rm -f /tmp/node-v${NODE_VERSION}-linux-x64.tar.xz
 
+
+RUN apt-get install -y docker.io
+
 # Define uma variável de ambiente NODE_HOME que aponta para o local do Node.js
 ENV NODE_HOME /opt/node
 
