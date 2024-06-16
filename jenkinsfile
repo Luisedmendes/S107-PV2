@@ -24,8 +24,7 @@ pipeline {
         stage('Testes') {
             steps {
                 sh 'npm install'
-                // sh 'docker-compose up -d'
-                dockerComposeBuild()
+                sh 'docker-compose up -d'
                 sh 'yarn dev &'
                 sh 'sleep 10'
                 sh 'yarn test --testPathPattern=Service.spec.ts'
