@@ -17,6 +17,10 @@ RUN apt-get update && \
     ln -s /opt/node/bin/npm /usr/local/bin && \
     rm -f /tmp/node-v${NODE_VERSION}-linux-x64.tar.xz
 
+RUN curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+RUN chmod +x /usr/local/bin/docker-compose
+    
+
 
 RUN apt-get install -y docker.io
 
