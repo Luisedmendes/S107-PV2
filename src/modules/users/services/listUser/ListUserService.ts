@@ -38,7 +38,6 @@ export class ListUserService {
         this.connection.client
       }:users:${page}:${limit}:${JSON.stringify(filters)}`;
 
-      
       let cache = await this.cacheProvider.recovery<ICacheDTO<User>>(cacheKey);
       if (!cache) {
         const { list, amount } = await this.usersRepository.findAll(
