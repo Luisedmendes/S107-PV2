@@ -8,8 +8,8 @@ import { FakeDataSource } from '@shared/typeorm/dataSources/fakes/fakeDataSource
 import { ListUserService } from './ListUserService';
 
 let fakeUsersRepository: IUsersRepositoryDTO;
-let fakeCacheProvider: ICacheProviderDTO;
 let connection: IConnectionDTO;
+let fakeCacheProvider: ICacheProviderDTO;
 let listUserService: ListUserService;
 
 describe('ListUserService', (): void => {
