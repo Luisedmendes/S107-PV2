@@ -1,5 +1,5 @@
-const nodemailer = require('nodemailer');
 const dotenv = require('dotenv');
+const nodemailer = require('nodemailer');
 
 dotenv.config();
 async function main() {
