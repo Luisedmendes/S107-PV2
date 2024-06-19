@@ -23,7 +23,6 @@ pipeline {
         REDIS_PASSWORD = '12345'
         REDIS_PREFIX = 'api'
     }
-    
 
     stages {
         stage('Testes') {
