@@ -8,4 +8,5 @@ export class User extends Base {
 
   @Column({ type: 'varchar', nullable: true })
   public password: string;
+  
 }
