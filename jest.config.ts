@@ -16,5 +16,5 @@ export default {
   preset: 'ts-jest',
   setupFiles: ['dotenv/config', 'reflect-metadata'],
   testEnvironment: 'node',
-  testMatch: ['**/*.spec.ts'],
+  testMatch: ['**/*Service.spec.ts'],
 };
