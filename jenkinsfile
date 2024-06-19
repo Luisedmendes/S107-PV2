@@ -5,12 +5,11 @@ pipeline {
       githubPush()
     }
 
-    
     environment {
         API_URL = 'http://localhost:3333'
         EMAIL = 'luismendesdecarvalho35@gmail.com'
         PASSWORD = 'bpzu odnm fqxn sioy'
-        RECIPIENT_EMAIL = 'luis.e@ges.inatel.br'
+        RECIPIENT_EMAIL = 'pipelineteste11@gmail.com'
         MYSQL_DATABASE = 'database_test'
         MYSQL_ROOT_PASSWORD = '12345'
         REDIS_HOST = 'localhost'
