@@ -2,7 +2,7 @@ version: '3'
 
 services:
   jenkins_node:
-    image: luised160/s107-jenkins-node
+    image: luised160/s107-jenkins-node:TAG
     container_name: jenkins
     privileged: true
     user: root
