@@ -4,6 +4,7 @@ pipeline {
     triggers {
       githubPush()
     }
+
     
     environment {
         API_URL = 'http://localhost:3333'
