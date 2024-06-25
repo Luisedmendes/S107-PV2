@@ -9,21 +9,24 @@ services:
     ports:
      - 8080:8080
      - 50000:50000
+     - 3333:3333
     # volumes:
     #   - ./jenkins_compose/jenkins_configuration:/var/jenkins_home
     #   - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+    - rs-network
       
   database:
-    image: mysql
+    image: mysql:latest
     restart: unless-stopped
     container_name: mysql
-    # command: --default-authentication-plugin=mysql_native_password
+    command: ["mysqld", "--mysql-native-password=ON"]
     ports:
       - '3307:3306'
     environment:
       - MYSQL_HOST=localhost
       - MYSQL_PORT=3306
-      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=12345
       - MYSQL_PASSWORD=12345
       - MYSQL_DATABASE=database
     networks:
@@ -36,7 +39,7 @@ services:
     ports:
       - 6379:6379
     environment:
-      - REDIS_HOST=localhost
+      - REDIS_HOST=redis
       - REDIS_PORT=6379
       - REDIS_PASSWORD=12345
       - REDIS_PREFIX=api
